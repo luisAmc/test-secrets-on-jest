@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: [main]
+
+name: Continuous Integration
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [14.x, 16.x]
+
+    steps:
+      - name: Jest
+        run: yarn run test
+        env:
+          TEST_SECRET: ${{ secrets.TEST_SECRET }}
